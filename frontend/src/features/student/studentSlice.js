@@ -4,12 +4,11 @@ import axios from 'axios';
 const API = 'http://localhost:5000/api/students';
 
 // Async Thunks
-
 export const fetchStudents = createAsyncThunk(
   'students/fetchStudents',
   async (_, { getState }) => {
     const { token } = getState().auth;
-    const res = await axios.get(API, {
+    const res = await axios.get(`${API}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
@@ -20,7 +19,7 @@ export const addStudent = createAsyncThunk(
   'students/addStudent',
   async (student, { getState }) => {
     const { token } = getState().auth;
-    const res = await axios.post(`${API}/add`, student, {
+    const res = await axios.post(`${API}`, student, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;

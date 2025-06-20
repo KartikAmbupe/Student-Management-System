@@ -12,9 +12,9 @@ const router = express.Router();
 
 router.use(authenticate);
 
-router.get('/', authorize('admin', 'user'), getStudents);
-router.post('/', authorize('admin'), addStudent);
-router.put('/:id', authorize('admin'), updateStudent);
-router.delete('/:id', authorize('admin'), deleteStudent);
+router.get('/api/students', authorize('admin', 'user'), getStudents);
+router.post('/api/students', authorize('admin'), addStudent);
+router.delete('/api/students/:id', authorize('admin'), deleteStudent);
+router.put('/api/students/:id', authorize('admin'), updateStudent);
 
 export default router;

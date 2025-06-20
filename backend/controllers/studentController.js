@@ -6,9 +6,14 @@ export const getStudents = async (req, res) => {
 };
 
 export const addStudent = async (req, res) => {
-  const student = new Student(req.body);
-  await student.save();
-  res.status(201).json(student);
+  try {
+    const { name, age, course } = req.body;
+    const student = new Student({ name, age, course });
+    await student.save();
+    res.status(201).json(student);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const updateStudent = async (req, res) => {
